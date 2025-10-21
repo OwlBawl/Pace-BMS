@@ -1,0 +1,20 @@
+{
+    "config": {
+      "step": {
+        "user": {
+          "title": "Налаштування PACE BMS",
+          "description": "Введіть параметри підключення",
+          "data": {
+            "name": "Назва",
+            "port": "Послідовний порт",
+            "baudrate": "Швидкість передачі",
+            "slave_id": "Modbus Slave ID"
+          }
+        }
+      },
+      "error": {
+        "cannot_connect": "Не вдалося підключитися",
+        "unknown": "Невідома помилка"
+      }
+    }
+}
