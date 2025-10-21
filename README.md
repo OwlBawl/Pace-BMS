@@ -77,3 +77,12 @@ A Home Assistant integration for Pace Battery Management Systems (BMS) via Modbu
 ### Finding Your Serial Port
 
 **Home Assistant OS -> Settings -> Hardware - All Hardware**
+
+Lovelace card example inculuded (change you device name prefix in entities)
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+  <img src="https://github.com/user-attachments/assets/1950a5b5-41ae-46f7-8bb6-e8ed8a2a625c" width="48%">
+  <img src="https://github.com/user-attachments/assets/43f47cca-2a4c-4165-8130-22e026348947" width="48%">
+  <img src="https://github.com/user-attachments/assets/92bde1f1-622c-45b2-95bf-f248cd27f430" width="48%">
+  <img src="https://github.com/user-attachments/assets/415d6356-4171-4655-8e19-d6484bc8a574" width="48%">
+  <img src="https://github.com/user-attachments/assets/478c3531-ebb3-49ff-b7cf-d3487669e77f" width="48%">
+</div>
