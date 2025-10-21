@@ -1,7 +1,6 @@
 {
   "name": "Pace BMS",
   "content_in_root": false,
-  "filename": "pace_bms",
   "render_readme": true,
   "homeassistant": "2023.1.0"
 }
