@@ -1,0 +1,291 @@
+type: vertical-stack
+cards:
+  - type: entities
+    title: Battery Overview
+    icon: mdi:battery-high
+    show_header_toggle: false
+    entities:
+      - entity: sensor.pace_bms_state_of_charge
+        name: State of Charge
+      - entity: sensor.pace_bms_pack_voltage
+        name: Pack Voltage
+      - entity: sensor.pace_bms_current
+        name: Current
+      - entity: sensor.pace_bms_remaining_capacity
+        name: Remaining Capacity
+      - type: section
+      - entity: sensor.pace_bms_full_capacity
+        name: Full Capacity
+      - entity: sensor.pace_bms_design_capacity
+        name: Design Capacity
+      - entity: sensor.pace_bms_state_of_health
+        name: State of Health
+      - entity: sensor.pace_bms_cycle_count
+        name: Cycle Count
+    state_color: true
+  - type: entities
+    title: Cell Voltages
+    icon: mdi:battery-outline
+    show_header_toggle: false
+    entities:
+      - entity: sensor.pace_bms_cell_1_voltage
+        name: Cell 1
+      - entity: sensor.pace_bms_cell_2_voltage
+        name: Cell 2
+      - entity: sensor.pace_bms_cell_3_voltage
+        name: Cell 3
+      - entity: sensor.pace_bms_cell_4_voltage
+        name: Cell 4
+      - entity: sensor.pace_bms_cell_5_voltage
+        name: Cell 5
+      - entity: sensor.pace_bms_cell_6_voltage
+        name: Cell 6
+      - entity: sensor.pace_bms_cell_7_voltage
+        name: Cell 7
+      - entity: sensor.pace_bms_cell_8_voltage
+        name: Cell 8
+    state_color: true
+  - type: entities
+    title: Status
+    icon: mdi:shield-alert-outline
+    show_header_toggle: false
+    entities:
+      - type: section
+        label: Overvoltage
+      - entity: binary_sensor.charging
+        name: Charging
+      - entity: binary_sensor.discharging
+        name: Discharging
+      - entity: binary_sensor.charging_mosfet
+        name: MOSFET charge
+      - entity: binary_sensor.discharging_mosfet
+        name: MOSFET discharge
+    state_color: true
+  - type: entities
+    title: Pack Voltage Protection
+    icon: mdi:shield-alert
+    show_header_toggle: false
+    entities:
+      - type: section
+        label: Overvoltage
+      - entity: number.pace_bms_pack_ov_alarm
+        name: OV Alarm
+      - entity: number.pace_bms_pack_ov_protection
+        name: OV Protection
+      - entity: number.pace_bms_pack_ov_release
+        name: OV Release
+      - entity: number.pace_bms_pack_ov_delay
+        name: OV Delay
+      - type: section
+        label: Undervoltage
+      - entity: number.pace_bms_pack_uv_alarm
+        name: UV Alarm
+      - entity: number.pace_bms_pack_uv_protection
+        name: UV Protection
+      - entity: number.pace_bms_pack_uv_release
+        name: UV Release
+      - entity: number.pace_bms_pack_uv_delay
+        name: UV Delay
+    state_color: true
+  - type: entities
+    title: Cell Voltage Protection
+    icon: mdi:shield-alert
+    show_header_toggle: false
+    entities:
+      - type: section
+        label: Overvoltage
+      - entity: number.pace_bms_cell_ov_alarm
+        name: OV Alarm
+      - entity: number.pace_bms_cell_ov_protection
+        name: OV Protection
+      - entity: number.pace_bms_cell_ov_release
+        name: OV Release
+      - entity: number.pace_bms_cell_ov_delay
+        name: OV Delay
+      - type: section
+        label: Undervoltage
+      - entity: number.pace_bms_cell_uv_alarm
+        name: UV Alarm
+      - entity: number.pace_bms_cell_uv_protection
+        name: UV Protection
+      - entity: number.pace_bms_cell_uv_release
+        name: UV Release
+      - entity: number.pace_bms_cell_uv_delay
+        name: UV Delay
+    state_color: true
+  - type: entities
+    title: Balance & Charge Settings
+    icon: mdi:scale-balance
+    show_header_toggle: false
+    entities:
+      - type: section
+        label: Balance
+      - entity: number.pace_bms_balance_start_voltage
+        name: Balance Start Voltage
+      - entity: number.pace_bms_balance_delta_voltage
+        name: Balance Delta Voltage
+      - type: section
+        label: Charge
+      - entity: number.pace_bms_full_charge_voltage
+        name: Full Charge Voltage
+      - entity: number.pace_bms_full_charge_current
+        name: Full Charge Current
+      - type: section
+        label: Sleep & Protection
+      - entity: number.pace_bms_cell_sleep_voltage
+        name: Cell Sleep Voltage
+      - entity: number.pace_bms_cell_sleep_delay
+        name: Cell Sleep Delay
+      - entity: number.pace_bms_short_circuit_delay
+        name: Short Circuit Delay
+      - entity: number.pace_bms_soc_alarm_threshold
+        name: SOC Alarm Threshold
+    state_color: true
+  - type: entities
+    title: Status Flags
+    icon: mdi:alert-circle
+    show_header_toggle: false
+    entities:
+      - entity: sensor.pace_bms_balancing_cells
+        name: Balancing Cells
+      - entity: sensor.pace_bms_warnings
+        name: Warnings
+      - entity: sensor.pace_bms_protections
+        name: Protections
+      - entity: sensor.pace_bms_status
+        name: Status
+    state_color: true
+  - type: entities
+    title: Temperatures
+    icon: mdi:thermometer
+    show_header_toggle: false
+    entities:
+      - entity: sensor.pace_bms_temperature_1
+        name: Battery Temp 1
+      - entity: sensor.pace_bms_temperature_2
+        name: Battery Temp 2
+      - entity: sensor.pace_bms_mosfet_temperature
+        name: MOSFET Temperature
+      - entity: sensor.pace_bms_environment_temperature
+        name: Environment Temperature
+    state_color: true
+  - type: entities
+    title: Pack Current Protection
+    icon: mdi:current-ac
+    show_header_toggle: false
+    entities:
+      - type: section
+        label: Charging Current
+      - entity: number.pace_bms_charging_oc_alarm
+        name: OC Alarm
+      - entity: number.pace_bms_charging_oc_protection
+        name: OC Protection
+      - entity: number.pace_bms_charging_oc_delay
+        name: OC Delay
+      - entity: number.pace_bms_charging_oc2_protection
+        name: OC-2 Protection
+      - entity: number.pace_bms_charging_oc2_delay
+        name: OC-2 Delay
+      - type: section
+        label: Discharging Current
+      - entity: number.pace_bms_discharging_oc_alarm
+        name: OC Alarm
+      - entity: number.pace_bms_discharging_oc_protection
+        name: OC Protection
+      - entity: number.pace_bms_discharging_oc_delay
+        name: OC Delay
+      - entity: number.pace_bms_discharging_oc2_protection
+        name: OC-2 Protection
+      - entity: number.pace_bms_discharging_oc2_delay
+        name: OC-2 Delay
+    state_color: true
+  - type: entities
+    title: Charging Temperature Protection
+    icon: mdi:thermometer-alert
+    show_header_toggle: false
+    entities:
+      - type: section
+        label: Over Temperature
+      - entity: number.pace_bms_charging_ot_alarm
+        name: OT Alarm
+      - entity: number.pace_bms_charging_ot_protection
+        name: OT Protection
+      - entity: number.pace_bms_charging_ot_release
+        name: OT Release
+      - type: section
+        label: Under Temperature
+      - entity: number.pace_bms_charging_ut_alarm
+        name: UT Alarm
+      - entity: number.pace_bms_charging_ut_protection
+        name: UT Protection
+      - entity: number.pace_bms_charging_ut_release
+        name: UT Release
+    state_color: true
+  - type: entities
+    title: Discharging Temperature Protection
+    icon: mdi:thermometer-alert
+    show_header_toggle: false
+    entities:
+      - type: section
+        label: Over Temperature
+      - entity: number.pace_bms_discharging_ot_alarm
+        name: OT Alarm
+      - entity: number.pace_bms_discharging_ot_protection
+        name: OT Protection
+      - entity: number.pace_bms_discharging_ot_release
+        name: OT Release
+      - type: section
+        label: Under Temperature
+      - entity: number.pace_bms_discharging_ut_alarm
+        name: UT Alarm
+      - entity: number.pace_bms_discharging_ut_protection
+        name: UT Protection
+      - entity: number.pace_bms_discharging_ut_release
+        name: UT Release
+    state_color: true
+  - type: entities
+    title: MOSFET Temperature Protection
+    icon: mdi:chip
+    show_header_toggle: false
+    entities:
+      - entity: number.pace_bms_mosfet_ot_alarm
+        name: OT Alarm
+      - entity: number.pace_bms_mosfet_ot_protection
+        name: OT Protection
+      - entity: number.pace_bms_mosfet_ot_release
+        name: OT Release
+    state_color: true
+  - type: entities
+    title: Environment Temperature Protection
+    icon: mdi:thermometer
+    show_header_toggle: false
+    entities:
+      - type: section
+        label: Over Temperature
+      - entity: number.pace_bms_env_ot_alarm
+        name: OT Alarm
+      - entity: number.pace_bms_env_ot_protection
+        name: OT Protection
+      - entity: number.pace_bms_env_ot_release
+        name: OT Release
+      - type: section
+        label: Under Temperature
+      - entity: number.pace_bms_env_ut_alarm
+        name: UT Alarm
+      - entity: number.pace_bms_env_ut_protection
+        name: UT Protection
+      - entity: number.pace_bms_env_ut_release
+        name: UT Release
+    state_color: true
+  - type: entities
+    title: System Information
+    icon: mdi:information
+    show_header_toggle: false
+    entities:
+      - entity: sensor.pace_bms_version_info
+        name: Version
+      - entity: sensor.pace_bms_model_sn
+        name: Model SN
+      - entity: sensor.pace_bms_pack_sn
+        name: Pack SN
+    state_color: true
