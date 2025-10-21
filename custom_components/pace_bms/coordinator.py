@@ -85,7 +85,26 @@ class PaceBMSCoordinator(DataUpdateCoordinator[dict[str, Any]]):
 
     def _connect(self) -> None:
         """Connect to Modbus device."""
-        if self.client is None or not self.client.is_socket_open():
+        # Close existing connection if it's in a bad state
+        if self.client is not None:
+            if not self.client.is_socket_open():
+                try:
+                    self.client.close()
+                except Exception as err:
+                    _LOGGER.debug("Error closing old connection: %s", err)
+                self.client = None
+            else:
+                # Connection appears to be open
+                return
+        
+        # Create new connection
+        if self.client is None:
+            _LOGGER.debug(
+                "Connecting to BMS at %s (baudrate=%s, slave_id=%s)",
+                self.config[CONF_PORT],
+                self.config[CONF_BAUDRATE],
+                self._slave_id,
+            )
             self.client = ModbusSerialClient(
                 port=self.config[CONF_PORT],
                 baudrate=self.config[CONF_BAUDRATE],
@@ -94,11 +113,34 @@ class PaceBMSCoordinator(DataUpdateCoordinator[dict[str, Any]]):
                 stopbits=MODBUS_STOPBITS,
                 timeout=MODBUS_TIMEOUT,
             )
-            self.client.connect()
+            if not self.client.connect():
+                self.client = None
+                raise UpdateFailed(
+                    f"Failed to connect to BMS at {self.config[CONF_PORT]}. "
+                    f"Check that the device is connected and not in use by another application."
+                )
+            _LOGGER.info("Successfully connected to BMS at %s", self.config[CONF_PORT])
+
+    def disconnect(self) -> None:
+        """Disconnect from Modbus device."""
+        if self.client is not None:
+            try:
+                self.client.close()
+                _LOGGER.debug("Disconnected from BMS")
+            except Exception as err:
+                _LOGGER.debug("Error disconnecting: %s", err)
+            finally:
+                self.client = None
 
     def _read_holding_registers(self, address: int, count: int = 1) -> list[int]:
         """Read holding registers."""
-        self._connect()
+        try:
+            self._connect()
+        except Exception as err:
+            # Force disconnect on connection error
+            self.disconnect()
+            raise
+        
         try:
             result = self.client.read_holding_registers(
                 address=address,
@@ -106,10 +148,19 @@ class PaceBMSCoordinator(DataUpdateCoordinator[dict[str, Any]]):
                 device_id=self._slave_id,
             )
             if result.isError():
-                raise UpdateFailed(f"Modbus error reading address {address}")
+                _LOGGER.error("Modbus error reading address %d: %s", address, result)
+                # Don't immediately disconnect on read error, might be transient
+                raise UpdateFailed(f"Modbus error reading address {address}: {result}")
             return result.registers
         except ModbusException as err:
+            _LOGGER.error("Modbus exception: %s", err)
+            # Disconnect on exception to force reconnect next time
+            self.disconnect()
             raise UpdateFailed(f"Modbus exception: {err}") from err
+        except Exception as err:
+            _LOGGER.error("Unexpected error: %s", err)
+            self.disconnect()
+            raise UpdateFailed(f"Unexpected error: {err}") from err
 
     def write_register(self, address: int, value: int) -> bool:
         """Write to a holding register using 0x10 (write multiple registers)."""
