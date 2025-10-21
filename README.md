@@ -76,4 +76,4 @@ A Home Assistant integration for Pace Battery Management Systems (BMS) via Modbu
 
 ### Finding Your Serial Port
 
-**Home Assistant OS / Supervised:**
+**Home Assistant OS -> Settings -> Hardware - All Hardware**
