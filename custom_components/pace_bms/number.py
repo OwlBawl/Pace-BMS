@@ -545,8 +545,8 @@ async def async_setup_entry(
 class PaceBMSNumber(CoordinatorEntity, NumberEntity):
     """Representation of a Pace BMS configurable parameter."""
     
-    # Disable has_entity_name to use full custom names
-    _attr_has_entity_name = False
+    # Enable has_entity_name to automatically use device name prefix
+    _attr_has_entity_name = True
     _attr_should_poll = False
 
     def __init__(
@@ -559,8 +559,8 @@ class PaceBMSNumber(CoordinatorEntity, NumberEntity):
         super().__init__(coordinator)
         self._key = key
         self._config = config
-        # Use device name as prefix
-        self._attr_name = f"{coordinator.device_name} {key.replace('_', ' ').title()}"
+        # Set name without device prefix - HA will add it automatically
+        self._attr_name = key.replace('_', ' ').title()
         self._attr_unique_id = f"{coordinator.config['port']}_{key}"
         self._attr_native_min_value = config["min"]
         self._attr_native_max_value = config["max"]

@@ -30,8 +30,8 @@ async def async_setup_entry(
 class PaceBMSStatusBinarySensor(CoordinatorEntity, BinarySensorEntity):
     """Binary sensor for BMS status bits."""
     
-    # Disable has_entity_name to use full custom names
-    _attr_has_entity_name = False
+    # Enable has_entity_name to automatically use device name prefix
+    _attr_has_entity_name = True
     _attr_should_poll = False
 
     def __init__(
@@ -40,8 +40,8 @@ class PaceBMSStatusBinarySensor(CoordinatorEntity, BinarySensorEntity):
         """Initialize the binary sensor."""
         super().__init__(coordinator)
         self._bit = bit
-        # Use device name as prefix
-        self._attr_name = f"{coordinator.device_name} {name}"
+        # Set name without device prefix - HA will add it automatically
+        self._attr_name = name
         self._attr_unique_id = f"{coordinator.config['port']}_status_{bit}"
         # Link to the device
         self._attr_device_info = coordinator.device_info

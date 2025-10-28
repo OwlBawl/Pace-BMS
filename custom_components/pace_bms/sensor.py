@@ -168,8 +168,8 @@ async def async_setup_entry(
 class PaceBMSSensor(CoordinatorEntity, SensorEntity):
     """Representation of a Pace BMS sensor."""
     
-    # Disable has_entity_name to use full custom names
-    _attr_has_entity_name = False
+    # Enable has_entity_name to automatically use device name prefix
+    _attr_has_entity_name = True
     _attr_should_poll = False
 
     def __init__(
@@ -184,8 +184,8 @@ class PaceBMSSensor(CoordinatorEntity, SensorEntity):
         """Initialize the sensor."""
         super().__init__(coordinator)
         self._key = key
-        # Use device name as prefix
-        self._attr_name = f"{coordinator.device_name} {name}"
+        # Set name without device prefix - HA will add it automatically
+        self._attr_name = name
         self._attr_unique_id = f"{coordinator.config['port']}_{key}"
         self._attr_native_unit_of_measurement = unit
         self._attr_device_class = device_class
@@ -206,7 +206,7 @@ class PaceBMSSensor(CoordinatorEntity, SensorEntity):
 class PaceBMSFlagSensor(CoordinatorEntity, SensorEntity):
     """Sensor for decoded flags."""
 
-    _attr_has_entity_name = False
+    _attr_has_entity_name = True
     _attr_should_poll = False
 
     def __init__(
@@ -220,8 +220,8 @@ class PaceBMSFlagSensor(CoordinatorEntity, SensorEntity):
         super().__init__(coordinator)
         self._key = key
         self._flag_names = flag_names
-        # Use device name as prefix
-        self._attr_name = f"{coordinator.device_name} {name}"
+        # Set name without device prefix - HA will add it automatically
+        self._attr_name = name
         self._attr_unique_id = f"{coordinator.config['port']}_{key}_decoded"
         self._attr_device_info = coordinator.device_info
 
@@ -242,14 +242,14 @@ class PaceBMSFlagSensor(CoordinatorEntity, SensorEntity):
 class PaceBMSBalanceSensor(CoordinatorEntity, SensorEntity):
     """Sensor for balancing cells."""
 
-    _attr_has_entity_name = False
+    _attr_has_entity_name = True
     _attr_should_poll = False
 
     def __init__(self, coordinator: PaceBMSCoordinator) -> None:
         """Initialize the sensor."""
         super().__init__(coordinator)
-        # Use device name as prefix
-        self._attr_name = f"{coordinator.device_name} Balancing Cells"
+        # Set name without device prefix - HA will add it automatically
+        self._attr_name = "Balancing Cells"
         self._attr_unique_id = f"{coordinator.config['port']}_balancing_cells"
         self._attr_device_info = coordinator.device_info
 
