@@ -46,11 +46,13 @@ class PaceBMSCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         hass: HomeAssistant,
         config: dict[str, Any],
         update_interval: timedelta,
+        entry_id: str,
     ) -> None:
         """Initialize."""
         self.config = config
         self.client: ModbusSerialClient | None = None
         self._slave_id = config[CONF_SLAVE_ID]
+        self._entry_id = entry_id
         # Store the user-provided name
         self._device_name = config.get(CONF_NAME, "Pace BMS")
 
@@ -70,13 +72,13 @@ class PaceBMSCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     def device_info(self) -> DeviceInfo:
         """Return device information."""
         return DeviceInfo(
-            identifiers={(DOMAIN, self.config[CONF_PORT])},
+            identifiers={(DOMAIN, self._entry_id)},
             name=self._device_name,  # Use user-provided name
             manufacturer="Pace",
             model="BMS",
             sw_version="1.0.0",
             hw_version=f"Slave ID {self._slave_id}",
-            configuration_url=f"homeassistant://config/devices/device/{self.config[CONF_PORT]}",
+            configuration_url=f"homeassistant://config/devices/device/{self._entry_id}",
         )
 
     async def _async_update_data(self) -> dict[str, Any]:

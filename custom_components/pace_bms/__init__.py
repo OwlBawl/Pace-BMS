@@ -26,6 +26,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         hass,
         entry.data,
         timedelta(seconds=scan_interval),
+        entry.entry_id,
     )
 
     try:

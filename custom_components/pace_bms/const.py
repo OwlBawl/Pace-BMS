@@ -11,7 +11,7 @@ CONF_SCAN_INTERVAL: Final = "scan_interval"
 
 # Defaults
 DEFAULT_SLAVE_ID: Final = 1
-DEFAULT_PORT: Final = "/dev/ttyACM0"
+DEFAULT_PORT: Final = "/dev/ttyUSB1"
 DEFAULT_BAUDRATE: Final = 9600
 DEFAULT_SCAN_INTERVAL: Final = 10
 
