@@ -7,6 +7,7 @@ DOMAIN: Final = "pace_bms"
 CONF_SLAVE_ID: Final = "slave_id"
 CONF_PORT: Final = "port"
 CONF_BAUDRATE: Final = "baudrate"
+CONF_SCAN_INTERVAL: Final = "scan_interval"
 
 # Defaults
 DEFAULT_SLAVE_ID: Final = 1
