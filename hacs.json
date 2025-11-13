@@ -2,5 +2,9 @@
   "name": "Pace BMS",
   "content_in_root": false,
   "render_readme": true,
-  "homeassistant": "2025.1.0"
+  "homeassistant": "2025.1.0",
+  "documentation": "https://github.com/OwlBawl/PACE-BMS",
+  "issue_tracker": "https://github.com/OwlBawl/PACE-BMS/issues",
+  "release_notes": "https://github.com/OwlBawl/PACE-BMS/releases",
+  "integration_type": "integration",
 }
