@@ -30,4 +30,4 @@ All protection parameters can be adjusted directly in Home Assistant:
 
 ## Need Help?
 
-Check the [full documentation](https://github.com/OwlBawl/pace_bms) or [report issues](https://github.com/OwlBawl/pace_bms/issues).
+Check the [full documentation](https://github.com/OwlBawl/PACE-BMS), view [release notes](https://github.com/OwlBawl/PACE-BMS/releases), or [report issues](https://github.com/OwlBawl/PACE-BMS/issues).
