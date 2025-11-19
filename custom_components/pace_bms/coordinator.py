@@ -69,6 +69,11 @@ class PaceBMSCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         return self._device_name
 
     @property
+    def entry_id(self) -> str:
+        """Return the config entry ID."""
+        return self._entry_id
+
+    @property
     def device_info(self) -> DeviceInfo:
         """Return device information."""
         return DeviceInfo(

@@ -186,7 +186,7 @@ class PaceBMSSensor(CoordinatorEntity, SensorEntity):
         self._key = key
         # Set name without device prefix - HA will add it automatically
         self._attr_name = name
-        self._attr_unique_id = f"{coordinator.config['port']}_{key}"
+        self._attr_unique_id = f"{coordinator.entry_id}_{key}"
         self._attr_native_unit_of_measurement = unit
         self._attr_device_class = device_class
         self._attr_state_class = state_class
@@ -222,7 +222,7 @@ class PaceBMSFlagSensor(CoordinatorEntity, SensorEntity):
         self._flag_names = flag_names
         # Set name without device prefix - HA will add it automatically
         self._attr_name = name
-        self._attr_unique_id = f"{coordinator.config['port']}_{key}_decoded"
+        self._attr_unique_id = f"{coordinator.entry_id}_{key}_decoded"
         self._attr_device_info = coordinator.device_info
 
     @property
@@ -250,7 +250,7 @@ class PaceBMSBalanceSensor(CoordinatorEntity, SensorEntity):
         super().__init__(coordinator)
         # Set name without device prefix - HA will add it automatically
         self._attr_name = "Balancing Cells"
-        self._attr_unique_id = f"{coordinator.config['port']}_balancing_cells"
+        self._attr_unique_id = f"{coordinator.entry_id}_balancing_cells"
         self._attr_device_info = coordinator.device_info
 
     @property

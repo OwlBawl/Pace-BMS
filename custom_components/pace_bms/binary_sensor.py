@@ -42,7 +42,7 @@ class PaceBMSStatusBinarySensor(CoordinatorEntity, BinarySensorEntity):
         self._bit = bit
         # Set name without device prefix - HA will add it automatically
         self._attr_name = name
-        self._attr_unique_id = f"{coordinator.config['port']}_status_{bit}"
+        self._attr_unique_id = f"{coordinator.entry_id}_status_{bit}"
         # Link to the device
         self._attr_device_info = coordinator.device_info
 

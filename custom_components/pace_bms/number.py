@@ -561,7 +561,7 @@ class PaceBMSNumber(CoordinatorEntity, NumberEntity):
         self._config = config
         # Set name without device prefix - HA will add it automatically
         self._attr_name = key.replace('_', ' ').title()
-        self._attr_unique_id = f"{coordinator.config['port']}_{key}"
+        self._attr_unique_id = f"{coordinator.entry_id}_{key}"
         self._attr_native_min_value = config["min"]
         self._attr_native_max_value = config["max"]
         self._attr_native_step = config["step"]
