@@ -112,6 +112,22 @@ async def async_setup_entry(
         ),
         PaceBMSSensor(
             coordinator,
+            "temp_3",
+            "Temperature 3",
+            UnitOfTemperature.CELSIUS,
+            SensorDeviceClass.TEMPERATURE,
+            SensorStateClass.MEASUREMENT,
+        ),
+        PaceBMSSensor(
+            coordinator,
+            "temp_4",
+            "Temperature 4",
+            UnitOfTemperature.CELSIUS,
+            SensorDeviceClass.TEMPERATURE,
+            SensorStateClass.MEASUREMENT,
+        ),
+        PaceBMSSensor(
+            coordinator,
             "mosfet_temp",
             "MOSFET Temperature",
             UnitOfTemperature.CELSIUS,
@@ -129,7 +145,7 @@ async def async_setup_entry(
     ]
 
     # Add cell voltage sensors
-    for i in range(1, 9):
+    for i in range(1, 17):
         entities.append(
             PaceBMSSensor(
                 coordinator,
@@ -258,7 +274,7 @@ class PaceBMSBalanceSensor(CoordinatorEntity, SensorEntity):
         """Return the balancing cells."""
         value = self.coordinator.data.get("balance_status", 0)
         cells = []
-        for i in range(8):
+        for i in range(16):
             if value & (1 << i):
                 cells.append(str(i + 1))
         return ", ".join(cells) if cells else "Off"

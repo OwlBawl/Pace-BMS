@@ -42,19 +42,21 @@ REG_BASIC_DATA_COUNT: Final = 8
 REG_STATUS_FLAGS_START: Final = 9  # Reads: Warning, Protection, Status/Fault, Balance
 REG_STATUS_FLAGS_COUNT: Final = 4
 
-REG_TEMP_GROUP_START: Final = 31  # Reads: Temp 1, Temp 2, (33-34 unused), MOSFET Temp, Env Temp
+REG_TEMP_GROUP_START: Final = 31  # Reads: Temp 1, Temp 2, Temp 3, Temp 4, MOSFET Temp, Env Temp
 REG_TEMP_GROUP_COUNT: Final = 6
 
 REG_PROTECTION_PARAMS_START: Final = 60  # Reads: All protection/balance parameters
 REG_PROTECTION_PARAMS_COUNT: Final = 55  # From 60 to 114 inclusive
 
-# Cell Voltage Registers (8 cells)
+# Cell Voltage Registers (16 cells)
 REG_CELL_VOLTAGE_START: Final = 15
-REG_CELL_VOLTAGE_COUNT: Final = 8
+REG_CELL_VOLTAGE_COUNT: Final = 16
 
 # Temperature Registers
 REG_TEMP_1: Final = 31
 REG_TEMP_2: Final = 32
+REG_TEMP_3: Final = 33
+REG_TEMP_4: Final = 34
 REG_MOSFET_TEMP: Final = 35
 REG_ENV_TEMP: Final = 36
 

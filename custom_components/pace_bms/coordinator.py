@@ -219,7 +219,7 @@ class PaceBMSCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             data["status_fault"] = status_data[2]
             data["balance_status"] = status_data[3]
 
-            # Read cell voltages in ONE transaction (registers 15-22)
+            # Read cell voltages in ONE transaction (registers 15-30)
             cell_voltages = self._read_holding_registers(
                 REG_CELL_VOLTAGE_START, REG_CELL_VOLTAGE_COUNT
             )
@@ -232,7 +232,8 @@ class PaceBMSCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             )
             data["temp_1"] = self._to_signed_16(temp_data[0]) * 0.1
             data["temp_2"] = self._to_signed_16(temp_data[1]) * 0.1
-            # Registers 33-34 are unused/reserved
+            data["temp_3"] = self._to_signed_16(temp_data[2]) * 0.1
+            data["temp_4"] = self._to_signed_16(temp_data[3]) * 0.1
             data["mosfet_temp"] = self._to_signed_16(temp_data[4]) * 0.1
             data["env_temp"] = self._to_signed_16(temp_data[5]) * 0.1
 
